@@ -1,0 +1,69 @@
+:host {
+  display: block;
+}
+
+.stage-hint {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin-top: 22rpx;
+  padding: 20rpx 24rpx;
+  border: 1rpx solid rgba(125, 211, 252, 0.12);
+  border-radius: 22rpx;
+  background: rgba(9, 16, 30, 0.72);
+}
+
+.hint-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 16rpx;
+  border: 1rpx solid rgba(94, 234, 212, 0.4);
+  border-radius: 50%;
+}
+
+.hint-pulse {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: #5eead4;
+  box-shadow: 0 0 12rpx #5eead4;
+  animation: hintPulse 1.8s ease-in-out infinite;
+}
+
+.hint-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 22rpx;
+  line-height: 1.5;
+  color: #8fa3c0;
+}
+
+.hint-action {
+  display: flex;
+  align-items: center;
+  margin-left: 16rpx;
+  padding: 8rpx 4rpx 8rpx 18rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #5eead4;
+}
+
+.hint-arrow {
+  margin-left: 8rpx;
+  font-size: 24rpx;
+}
+
+@keyframes hintPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}

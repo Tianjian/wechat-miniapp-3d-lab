@@ -1,0 +1,10 @@
+<view class="stage-hint">
+  <view class="hint-icon">
+    <view class="hint-pulse"></view>
+  </view>
+  <view class="hint-text">{{text}}</view>
+  <view wx:if="{{action}}" class="hint-action" bindtap="handleAction">
+    <text>{{action}}</text>
+    <text class="hint-arrow">↺</text>
+  </view>
+</view>

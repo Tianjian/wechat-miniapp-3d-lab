@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "全息倾斜卡",
+  "usingComponents": {
+    "stage-hint": "/components/stage-hint/stage-hint"
+  }
+}

@@ -1,0 +1,185 @@
+/* app.wxss —— 3D LAB 全局设计变量与通用组件类 */
+page {
+  --bg: #05070f;
+  --bg-soft: #0a1020;
+  --panel: rgba(13, 22, 40, 0.78);
+  --panel-solid: #0b1424;
+  --line: rgba(125, 211, 252, 0.14);
+  --line-strong: rgba(125, 211, 252, 0.34);
+  --text: #e8f2ff;
+  --text-2: #9fb2cf;
+  --text-3: #607492;
+  --cyan: #5eead4;
+  --cyan-deep: #22d3ee;
+  --violet: #a78bfa;
+  --pink: #f472b6;
+  --amber: #fbbf24;
+  --danger: #fb7185;
+  --radius: 28rpx;
+  --shadow: 0 30rpx 80rpx rgba(0, 0, 0, 0.45);
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+.page {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 40rpx 32rpx calc(56rpx + env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  color: var(--cyan);
+  text-transform: uppercase;
+  opacity: 0.86;
+}
+
+.page-head {
+  position: relative;
+  z-index: 2;
+}
+
+.page-title {
+  margin-top: 18rpx;
+  font-size: 54rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  line-height: 1.16;
+}
+
+.page-sub {
+  margin-top: 14rpx;
+  font-size: 25rpx;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+
+.head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.mono {
+  font-family: "SFMono-Regular", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.grad {
+  background: linear-gradient(102deg, #f4faff 4%, #7ef3e3 46%, #b49dfc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.panel {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(155deg, rgba(17, 28, 48, 0.9), rgba(8, 14, 27, 0.94));
+  border: 1rpx solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 44rpx;
+  padding: 0 18rpx;
+  border: 1rpx solid rgba(94, 234, 212, 0.28);
+  border-radius: 999rpx;
+  background: rgba(94, 234, 212, 0.07);
+  font-size: 21rpx;
+  letter-spacing: 1rpx;
+  color: var(--cyan);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  padding: 0 30rpx;
+  border-radius: 999rpx;
+  font-size: 27rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+  box-sizing: border-box;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+  opacity: 0.86;
+}
+
+.btn-primary {
+  background: linear-gradient(100deg, #5eead4, #22d3ee 55%, #38bdf8);
+  color: #041016;
+  box-shadow: 0 16rpx 40rpx rgba(45, 212, 191, 0.24);
+}
+
+.btn-ghost {
+  background: rgba(125, 211, 252, 0.06);
+  border: 1rpx solid var(--line-strong);
+  color: var(--text);
+}
+
+.readout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 22rpx 10rpx;
+  border: 1rpx solid var(--line);
+  border-radius: 22rpx;
+  background: rgba(10, 18, 33, 0.72);
+}
+
+.readout-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.readout-k {
+  font-size: 18rpx;
+  letter-spacing: 2rpx;
+  color: var(--text-3);
+}
+
+.readout-v {
+  margin-top: 6rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--cyan);
+}
+
+.readout-divider {
+  width: 1rpx;
+  height: 40rpx;
+  background: var(--line);
+}
+
+.tip {
+  position: relative;
+  z-index: 2;
+  margin-top: 18rpx;
+  font-size: 22rpx;
+  line-height: 1.6;
+  color: var(--text-3);
+  text-align: center;
+}

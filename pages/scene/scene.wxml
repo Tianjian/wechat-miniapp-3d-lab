@@ -1,0 +1,101 @@
+<view class="scene-page">
+  <view class="page-head">
+    <view class="eyebrow">EXPERIMENT 04 · PARALLAX</view>
+    <view class="head-row">
+      <view class="page-title">视差星域</view>
+      <view class="gyro-toggle {{gyroOn ? 'is-on' : ''}}" bindtap="handleGyroToggle">
+        <view class="gyro-dot"></view>
+        <text>{{gyroOn ? '陀螺仪' : '启用陀螺仪'}}</text>
+      </view>
+    </view>
+    <view class="page-sub">单指拖拽移动视角、双指捏合缩放景深；开启陀螺仪后，转动手机就能带动整片星域。</view>
+  </view>
+
+  <view
+    class="space"
+    bindtouchstart="handleTouchStart"
+    catchtouchmove="handleTouchMove"
+    bindtouchend="handleTouchEnd"
+    bindtouchcancel="handleTouchEnd"
+  >
+    <view class="space-scale" style="transform: scale({{zoom}});">
+      <view
+        class="world {{dragging ? 'is-dragging' : ''}}"
+        style="{{worldStyle}}"
+      >
+        <view class="layer layer-far" style="{{farStyle}}">
+          <view
+            wx:for="{{stars}}"
+            wx:key="id"
+            class="star"
+            style="left: {{item.x}}%; top: {{item.y}}%; width: {{item.size}}rpx; height: {{item.size}}rpx; opacity: {{item.opacity}}; animation-delay: {{item.delay}}s;"
+          ></view>
+          <view class="nebula nebula-a"></view>
+          <view class="nebula nebula-b"></view>
+        </view>
+
+        <view class="layer layer-mid" style="{{midStyle}}">
+          <view class="orbit-line line-a"></view>
+          <view class="orbit-line line-b"></view>
+
+          <view class="planet">
+            <view class="planet-shine"></view>
+            <view class="planet-band"></view>
+            <view class="planet-shadow"></view>
+          </view>
+          <view class="planet-ring"></view>
+          <view class="moon"></view>
+
+          <view class="monolith">
+            <view class="monolith-kicker">3D SCENE</view>
+            <view class="monolith-title">DEEP</view>
+            <view class="monolith-title">FIELD</view>
+            <view class="monolith-line"></view>
+            <view class="monolith-meta mono">LAYERS · 04</view>
+          </view>
+        </view>
+
+        <view class="layer layer-near" style="{{nearStyle}}">
+          <view
+            wx:for="{{panels}}"
+            wx:key="key"
+            class="float-card float-{{index}}"
+            style="animation-delay: {{index * 1.3}}s;"
+          >
+            <view class="float-k mono">{{item.label}}</view>
+            <view class="float-v mono">{{item.value}}</view>
+            <view class="float-line"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="space-vignette"></view>
+
+    <view class="space-hud">
+      <view class="hud-cell">
+        <text class="hud-k">ZOOM</text>
+        <text class="hud-v">{{zoomLabel}}</text>
+      </view>
+      <view class="hud-divider"></view>
+      <view class="hud-cell">
+        <text class="hud-k">TILT</text>
+        <text class="hud-v">{{panX}} / {{panY}}</text>
+      </view>
+      <view class="hud-divider"></view>
+      <view class="hud-cell">
+        <text class="hud-k">MODE</text>
+        <text class="hud-v">{{modeLabel}}</text>
+      </view>
+    </view>
+
+    <view class="space-badge">
+      <view class="badge-dot"></view>
+      <text>LIVE RENDER</text>
+    </view>
+  </view>
+
+  <view class="tip">拖动改变视角，捏合改变景深；陀螺仪在真机上更灵敏。</view>
+
+  <stage-hint text="按住星域拖动 · 双指捏合缩放" action="重置视角" bind:action="handleReset"></stage-hint>
+</view>

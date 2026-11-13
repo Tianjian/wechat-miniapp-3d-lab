@@ -1,0 +1,24 @@
+# dependencies / build artifacts
+node_modules/
+miniprogram_npm/
+dist/
+coverage/
+
+# WeChat DevTools local settings / private project config
+project.private.config.json
+.project/
+
+# local env / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# logs / OS files
+*.log
+.DS_Store
+Thumbs.db
+
+# transient preview artifacts
+docs/preview-qr.jpg
+docs/preview-qr.png

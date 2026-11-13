@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "视差星域",
+  "usingComponents": {
+    "stage-hint": "/components/stage-hint/stage-hint"
+  }
+}

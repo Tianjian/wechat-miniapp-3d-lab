@@ -1,0 +1,102 @@
+<view class="humanoid-page">
+  <view class="aura aura-a"></view>
+  <view class="aura aura-b"></view>
+
+  <view class="page-head">
+    <view class="eyebrow">EXPERIMENT 06 · HUMANOID</view>
+    <view class="head-row">
+      <view class="page-title">人形机器人</view>
+      <view class="live-pill">
+        <view class="live-dot"></view>
+        <text>{{motionName}} · LIVE</text>
+      </view>
+    </view>
+    <view class="page-sub">WebGL 实时渲染 · CC0 GLB 资产 · 43 骨骼 / 14 段动画；拖动旋转视角，双指缩放，切换动作查看步行动画。</view>
+  </view>
+
+  <view class="stage-bar">
+    <view class="chrome-badge">
+      <view class="chrome-dot"></view>
+      <text>WEBGL · GLB</text>
+    </view>
+    <view class="chrome-fps mono">{{fps}} FPS · {{motion}}</view>
+  </view>
+
+  <view class="gl-stage">
+    <canvas
+      type="webgl"
+      id="humanoid-canvas"
+      class="gl-canvas"
+      disable-scroll="true"
+      bindtouchstart="handleCanvasStart"
+      catchtouchmove="handleCanvasMove"
+      bindtouchend="handleCanvasEnd"
+      bindtouchcancel="handleCanvasEnd"
+    ></canvas>
+  </view>
+
+  <view wx:if="{{loading}}" class="status-strip">
+    <view class="status-spinner"></view>
+    <text>LOADING ROBOT · GLB {{stats.assetKb}} KB · CC0</text>
+  </view>
+
+  <view wx:if="{{error}}" class="status-strip is-error">
+    <text>{{error}}</text>
+  </view>
+
+  <view class="motion-row">
+    <view
+      wx:for="{{motions}}"
+      wx:key="key"
+      class="motion-chip {{motion == item.key ? 'is-active' : ''}}"
+      style="--accent: {{item.accent}};"
+      data-motion="{{item.key}}"
+      bindtap="handleMotion"
+    >
+      <text class="motion-label mono">{{item.label}}</text>
+      <text class="motion-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="asset-panel panel">
+    <view class="asset-top">
+      <view>
+        <view class="asset-k mono">ASSET / CC0 1.0</view>
+        <view class="asset-title">{{asset.name}}</view>
+      </view>
+      <view class="asset-size mono">{{stats.assetKb}} KB</view>
+    </view>
+    <view class="stat-row">
+      <view class="stat">
+        <text class="stat-v mono">{{stats.bones}}</text>
+        <text class="stat-k">BONES</text>
+      </view>
+      <view class="stat">
+        <text class="stat-v mono">{{stats.clips}}</text>
+        <text class="stat-k">CLIPS</text>
+      </view>
+      <view class="stat">
+        <text class="stat-v mono">{{stats.triangles}}</text>
+        <text class="stat-k">TRIS</text>
+      </view>
+      <view class="stat">
+        <text class="stat-v mono">{{stats.assetKb}}</text>
+        <text class="stat-k">KB</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cam-row">
+    <view class="cam-btn {{autoOrbit ? 'is-on' : ''}}" bindtap="handleAutoOrbit">
+      <view class="cam-dot"></view>
+      <text>自动环绕</text>
+    </view>
+    <view class="cam-btn" bindtap="handleResetCamera">复位视角</view>
+  </view>
+
+  <stage-hint
+    text="拖动旋转视角 · 双指缩放 · 点击动作切换"
+    action="复位视角"
+    bind:action="handleResetCamera"
+  ></stage-hint>
+</view>

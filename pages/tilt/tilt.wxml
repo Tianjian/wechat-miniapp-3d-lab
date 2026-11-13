@@ -1,0 +1,111 @@
+<view class="tilt-page">
+  <view class="aura aura-a"></view>
+  <view class="aura aura-b"></view>
+
+  <view class="page-head">
+    <view class="eyebrow">EXPERIMENT 02 · HOLO CARD</view>
+    <view class="page-title">全息会员卡</view>
+    <view class="page-sub">按住卡片拖动产生透视倾斜，高光跟随指尖；点击卡片或用按钮翻转查看背面。</view>
+  </view>
+
+  <view
+    class="card-stage"
+    bindtouchstart="handleTouchStart"
+    catchtouchmove="handleTouchMove"
+    bindtouchend="handleTouchEnd"
+    bindtouchcancel="handleTouchEnd"
+  >
+    <view class="card-shadow"></view>
+    <view class="orbit orbit-a"></view>
+    <view class="orbit orbit-b"></view>
+
+    <view
+      class="card-tilt {{dragging ? 'is-dragging' : ''}}"
+      style="transform: rotateX({{rx}}deg) rotateY({{ry}}deg);"
+      bindtap="handleFlip"
+    >
+      <view class="card-float">
+        <view class="card-flipper" style="transform: rotateY({{flipped ? 180 : 0}}deg);">
+          <view class="card-face card-front">
+            <view class="holo"></view>
+            <view class="scanline"></view>
+            <view
+              class="glare"
+              style="opacity: {{glare}}; background: radial-gradient(circle at {{glareX}}% {{glareY}}%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 56%);"
+            ></view>
+            <view class="front-orbit"></view>
+
+            <view class="front-top">
+              <view class="brand">
+                <view class="brand-mark">3D</view>
+                <view class="brand-text">
+                  <view class="brand-name">INTERACTION LAB</view>
+                  <view class="brand-sub">HOLOGRAPHIC PASS</view>
+                </view>
+              </view>
+              <view class="tier">MEMBER</view>
+            </view>
+
+            <view class="front-chip">
+              <view class="chip-line"></view>
+              <view class="chip-line"></view>
+              <view class="chip-line"></view>
+            </view>
+
+            <view class="front-name">WECHAT 3D</view>
+            <view class="front-serial mono">3D · 0001 · 2026</view>
+
+            <view class="front-bottom">
+              <view class="meta">
+                <view class="meta-k">HOLDER</view>
+                <view class="meta-v">MINI PROGRAM</view>
+              </view>
+              <view class="meta">
+                <view class="meta-k">RENDER</view>
+                <view class="meta-v">PRESERVE-3D</view>
+              </view>
+            </view>
+          </view>
+
+          <view class="card-face card-back">
+            <view class="back-top">
+              <view class="back-label">BACKSIDE / 构造参数</view>
+              <view class="back-badge">3D</view>
+            </view>
+
+            <view class="feature" wx:for="{{features}}" wx:key="label">
+              <text class="feature-k">{{item.label}}</text>
+              <text class="feature-v mono">{{item.value}}</text>
+            </view>
+
+            <view class="back-footer">TAP TO FLIP · 点击翻回正面</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="readout">
+    <view class="readout-item">
+      <text class="readout-k">ROTATE X</text>
+      <text class="readout-v">{{rx}}°</text>
+    </view>
+    <view class="readout-divider"></view>
+    <view class="readout-item">
+      <text class="readout-k">ROTATE Y</text>
+      <text class="readout-v">{{ry}}°</text>
+    </view>
+    <view class="readout-divider"></view>
+    <view class="readout-item">
+      <text class="readout-k">SIDE</text>
+      <text class="readout-v">{{side}}</text>
+    </view>
+  </view>
+
+  <view class="controls">
+    <view class="btn btn-primary" bindtap="handleFlip">{{flipped ? '翻回正面' : '翻转卡片'}}</view>
+    <view class="btn btn-ghost" bindtap="handleReset">重置角度</view>
+  </view>
+
+  <stage-hint text="拖动倾斜 · 点击卡片翻转" action="重置" bind:action="handleReset"></stage-hint>
+</view>

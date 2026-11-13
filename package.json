@@ -1,0 +1,22 @@
+{
+  "name": "wechat-miniapp-3d-lab",
+  "version": "1.0.0",
+  "description": "微信小程序 3D 交互实验场：CSS 3D、四轴机械臂与 WebGL 人形机器人",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "verify": "node scripts/verify.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "dev": "node scripts/devtools.mjs open"
+  },
+  "keywords": [
+    "wechat",
+    "miniprogram",
+    "webgl",
+    "threejs",
+    "css-3d",
+    "robotics"
+  ]
+}

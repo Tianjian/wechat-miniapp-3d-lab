@@ -1,0 +1,80 @@
+<view class="cube-page">
+  <view class="aura"></view>
+
+  <view class="page-head">
+    <view class="eyebrow">EXPERIMENT 01 · CUBE</view>
+    <view class="head-row">
+      <view class="page-title">六面体</view>
+      <view class="spin-toggle {{autoSpin ? 'is-on' : ''}}" bindtap="handleAutoSpin">
+        <view class="spin-dot"></view>
+        <text>{{autoSpin ? '自动旋转' : '手动控制'}}</text>
+      </view>
+    </view>
+    <view class="page-sub">拖拽任意方向旋转，松手按速度滑行；点击面片查看这一面的构造说明。</view>
+  </view>
+
+  <view
+    class="stage"
+    bindtouchstart="handleTouchStart"
+    catchtouchmove="handleTouchMove"
+    bindtouchend="handleTouchEnd"
+    bindtouchcancel="handleTouchEnd"
+  >
+    <view class="stage-floor"></view>
+    <view class="stage-aura"></view>
+    <view class="stage-ring"></view>
+
+    <view
+      class="scene {{dragging ? 'is-dragging' : ''}}"
+      style="transform: rotateX({{rotX}}deg) rotateY({{rotY}}deg);"
+    >
+      <view class="cube {{autoSpin ? 'is-spinning' : ''}} {{dragging ? 'is-paused' : ''}}">
+        <view
+          wx:for="{{faces}}"
+          wx:key="key"
+          class="face {{item.faceClass}} {{activeFace == item.key ? 'is-active' : ''}}"
+          data-face="{{item.key}}"
+          bindtap="handleFaceTap"
+        >
+          <view class="face-shine"></view>
+          <view class="face-kicker">{{item.kicker}}</view>
+          <view class="face-glyph">{{item.glyph}}</view>
+          <view class="face-title">{{item.title}}</view>
+          <view class="face-metric">{{item.metric}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="axis axis-x">X</view>
+    <view class="axis axis-y">Y</view>
+    <view class="axis-label">perspective · preserve-3d</view>
+  </view>
+
+  <view class="readout">
+    <view class="readout-item">
+      <text class="readout-k">ROTATE X</text>
+      <text class="readout-v">{{rotX}}°</text>
+    </view>
+    <view class="readout-divider"></view>
+    <view class="readout-item">
+      <text class="readout-k">ROTATE Y</text>
+      <text class="readout-v">{{rotY}}°</text>
+    </view>
+    <view class="readout-divider"></view>
+    <view class="readout-item">
+      <text class="readout-k">FACE</text>
+      <text class="readout-v">{{faceInfo.kicker}}</text>
+    </view>
+  </view>
+
+  <view class="detail panel">
+    <view class="detail-head">
+      <view class="detail-dot"></view>
+      <view class="detail-title">{{faceInfo.title}}</view>
+      <view class="detail-metric mono">{{faceInfo.metric}}</view>
+    </view>
+    <view class="detail-body">{{faceInfo.detail}}</view>
+  </view>
+
+  <stage-hint text="单指拖拽旋转 · 松手惯性滑行" action="重置" bind:action="handleReset"></stage-hint>
+</view>

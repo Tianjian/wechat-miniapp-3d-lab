@@ -1,0 +1,85 @@
+<view class="flow-page">
+  <view class="aura aura-a"></view>
+  <view class="aura aura-b"></view>
+
+  <view class="page-head">
+    <view class="eyebrow">EXPERIMENT 03 · DEPTH CAROUSEL</view>
+    <view class="page-title">景深轮播</view>
+    <view class="page-sub">卡片按偏移量排布在 Z 轴圆弧上；左右滑动、点按侧边卡片或使用按钮切换。</view>
+  </view>
+
+  <view
+    class="deck-stage"
+    bindtouchstart="handleTouchStart"
+    catchtouchmove="handleTouchMove"
+    bindtouchend="handleTouchEnd"
+    bindtouchcancel="handleTouchEnd"
+  >
+    <view class="deck-floor"></view>
+    <view class="deck-halo"></view>
+    <view
+      class="deck {{dragging ? 'is-dragging' : ''}}"
+      style="transform: rotateX({{tiltX}}deg) rotateY({{tiltY}}deg);"
+    >
+      <view
+        wx:for="{{cards}}"
+        wx:key="key"
+        wx:for-index="cardIndex"
+        class="slide {{item.offset == 0 ? 'is-active' : ''}}"
+        style="{{item.style}}"
+        data-index="{{cardIndex}}"
+        bindtap="handleCardTap"
+      >
+        <view class="slide-glow"></view>
+        <view class="slide-grid"></view>
+        <view class="slide-top">
+          <view class="slide-index mono">{{item.index}}</view>
+          <view class="slide-dot"></view>
+        </view>
+        <view class="slide-glyph">{{item.glyph}}</view>
+        <view class="slide-copy">
+          <view class="slide-title">{{item.title}}</view>
+          <view class="slide-sub">{{item.subtitle}}</view>
+          <view class="slide-tags">
+            <view
+              wx:for="{{item.tags}}"
+              wx:for-item="tag"
+              wx:for-index="tagIndex"
+              wx:key="*this"
+              class="slide-tag"
+            >{{tag}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="flow-info panel">
+    <view class="flow-top">
+      <view class="flow-position mono">{{info.index}} / 05</view>
+      <view class="flow-dots">
+        <view
+          wx:for="{{slides}}"
+          wx:key="key"
+          wx:for-index="dotIndex"
+          class="flow-dot {{dotIndex == active ? 'is-on' : ''}}"
+          data-index="{{dotIndex}}"
+          bindtap="handleDot"
+        ></view>
+      </view>
+    </view>
+    <view class="flow-title">{{info.title}} · {{info.subtitle}}</view>
+    <view class="flow-desc">{{info.desc}}</view>
+    <view class="flow-bar">
+      <view class="flow-bar-fill" style="width: {{progress}}%"></view>
+    </view>
+  </view>
+
+  <view class="flow-controls">
+    <view class="round-btn" bindtap="handlePrev">‹</view>
+    <view class="flow-counter mono">{{active + 1}} / {{slides.length}}</view>
+    <view class="round-btn" bindtap="handleNext">›</view>
+  </view>
+
+  <stage-hint text="左右滑动切换 · 点按两侧卡片聚焦" action="回到首张" bind:action="handleReset"></stage-hint>
+</view>

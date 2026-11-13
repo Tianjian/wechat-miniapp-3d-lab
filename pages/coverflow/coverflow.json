@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "景深轮播",
+  "usingComponents": {
+    "stage-hint": "/components/stage-hint/stage-hint"
+  }
+}

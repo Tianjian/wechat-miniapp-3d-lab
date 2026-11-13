@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "四轴机械臂",
+  "usingComponents": {
+    "stage-hint": "/components/stage-hint/stage-hint"
+  }
+}

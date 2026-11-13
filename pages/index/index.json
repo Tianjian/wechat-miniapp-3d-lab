@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "3D LAB",
+  "usingComponents": {
+    "demo-card": "/components/demo-card/demo-card"
+  }
+}

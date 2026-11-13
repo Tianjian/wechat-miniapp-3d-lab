@@ -1,0 +1,226 @@
+<view class="robot-page">
+  <view class="aura aura-a"></view>
+  <view class="aura aura-b"></view>
+
+  <view class="page-head">
+    <view class="eyebrow">EXPERIMENT 05 · ROBOTIC ARM</view>
+    <view class="head-row">
+      <view class="page-title">四轴机械臂</view>
+      <view class="status-pill {{activeJoint ? 'is-active' : ''}}">
+        <view class="status-dot"></view>
+        <text>{{activeLabel}}</text>
+      </view>
+    </view>
+    <view class="page-sub">拖拽 J1–J4 关节调整姿态，空白处拖动旋转视角；预设按钮演示四轴联动与正运动学读数。</view>
+  </view>
+
+  <view
+    class="arm-stage"
+    bindtouchstart="handleStageStart"
+    catchtouchmove="handleStageMove"
+    bindtouchend="handleStageEnd"
+    bindtouchcancel="handleStageEnd"
+  >
+    <view class="stage-glow"></view>
+
+    <view
+      class="arm-world {{cameraDragging ? 'is-dragging' : ''}}"
+      style="transform: rotateX({{camX}}deg) rotateY({{camY}}deg) scale({{zoom}});"
+    >
+      <view class="stage-floor"></view>
+
+      <view class="robot {{easing ? 'is-easing' : ''}}">
+        <view
+          class="base"
+          data-joint="yaw"
+          catchtouchstart="handleJointStart"
+          catchtouchmove="handleJointMove"
+          catchtouchend="handleJointEnd"
+          catchtouchcancel="handleJointEnd"
+        >
+          <view
+            wx:for="{{baseFaces}}"
+            wx:key="id"
+            class="base-strip {{item.lit ? 'is-lit' : ''}}"
+            style="transform: rotateY({{item.angle}}deg) translateZ(90rpx);"
+          ></view>
+          <view class="base-top"></view>
+          <view class="base-ring"></view>
+          <view class="base-label mono">J1 · YAW</view>
+        </view>
+
+        <view class="yaw" style="transform: rotateY({{pose.yaw}}deg);">
+          <view class="joint shoulder-joint" style="transform: rotateX({{pose.shoulder}}deg);">
+            <view
+              class="hub hub-shoulder {{activeJoint == 'shoulder' ? 'is-active' : ''}}"
+              data-joint="shoulder"
+              catchtouchstart="handleJointStart"
+              catchtouchmove="handleJointMove"
+              catchtouchend="handleJointEnd"
+              catchtouchcancel="handleJointEnd"
+            >
+              <view class="hub-ring hub-ring-x"></view>
+              <view class="hub-ring hub-ring-y"></view>
+              <view class="hub-core"></view>
+              <view class="hub-label mono">J2</view>
+            </view>
+
+            <view class="link link-1">
+              <view class="lf lf-front"><view class="link-mark mono">SHOULDER</view></view>
+              <view class="lf lf-back"></view>
+              <view class="lf lf-left"></view>
+              <view class="lf lf-right"></view>
+            </view>
+
+            <view class="joint elbow-joint" style="transform: translateY(-250rpx) rotateX({{pose.elbow}}deg);">
+              <view
+                class="hub hub-elbow {{activeJoint == 'elbow' ? 'is-active' : ''}}"
+                data-joint="elbow"
+                catchtouchstart="handleJointStart"
+                catchtouchmove="handleJointMove"
+                catchtouchend="handleJointEnd"
+                catchtouchcancel="handleJointEnd"
+              >
+                <view class="hub-ring hub-ring-x"></view>
+                <view class="hub-ring hub-ring-y"></view>
+                <view class="hub-core"></view>
+                <view class="hub-label mono">J3</view>
+              </view>
+
+              <view class="link link-2">
+                <view class="lf lf-front"><view class="link-mark mono">ELBOW</view></view>
+                <view class="lf lf-back"></view>
+                <view class="lf lf-left"></view>
+                <view class="lf lf-right"></view>
+              </view>
+
+              <view class="joint wrist-joint" style="transform: translateY(-210rpx) rotateX({{pose.wrist}}deg);">
+                <view
+                  class="hub hub-wrist {{activeJoint == 'wrist' ? 'is-active' : ''}}"
+                  data-joint="wrist"
+                  catchtouchstart="handleJointStart"
+                  catchtouchmove="handleJointMove"
+                  catchtouchend="handleJointEnd"
+                  catchtouchcancel="handleJointEnd"
+                >
+                  <view class="hub-ring hub-ring-x"></view>
+                  <view class="hub-ring hub-ring-y"></view>
+                  <view class="hub-core"></view>
+                  <view class="hub-label mono">J4</view>
+                </view>
+
+                <view class="link link-3">
+                  <view class="lf lf-front"><view class="link-mark mono">WRIST</view></view>
+                  <view class="lf lf-back"></view>
+                  <view class="lf lf-left"></view>
+                  <view class="lf lf-right"></view>
+                </view>
+
+                <view class="wrist-cap"></view>
+
+                <view class="gripper">
+                  <view class="finger finger-left" style="{{fingerLeftStyle}}">
+                    <view class="finger-tip"></view>
+                  </view>
+                  <view class="finger finger-right" style="{{fingerRightStyle}}">
+                    <view class="finger-tip"></view>
+                  </view>
+                  <view class="tool-led"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="stage-badge">
+      <view class="badge-dot"></view>
+      <text>4-DOF · LIVE</text>
+    </view>
+    <view class="camera-hud">
+      <text class="mono">CAM {{camX}}° / {{camY}}°</text>
+      <text class="mono">{{zoomLabel}}</text>
+    </view>
+  </view>
+
+  <view class="joint-board">
+    <view class="joint-chip {{activeJoint == 'yaw' ? 'is-active' : ''}}">
+      <view class="joint-head"><text class="joint-code mono">J1</text><text class="joint-axis">Y</text></view>
+      <view class="joint-name">底座</view>
+      <view class="joint-value mono">{{pose.yaw}}°</view>
+    </view>
+    <view class="joint-chip {{activeJoint == 'shoulder' ? 'is-active' : ''}}">
+      <view class="joint-head"><text class="joint-code mono">J2</text><text class="joint-axis">X</text></view>
+      <view class="joint-name">肩部</view>
+      <view class="joint-value mono">{{pose.shoulder}}°</view>
+    </view>
+    <view class="joint-chip {{activeJoint == 'elbow' ? 'is-active' : ''}}">
+      <view class="joint-head"><text class="joint-code mono">J3</text><text class="joint-axis">X</text></view>
+      <view class="joint-name">肘部</view>
+      <view class="joint-value mono">{{pose.elbow}}°</view>
+    </view>
+    <view class="joint-chip {{activeJoint == 'wrist' ? 'is-active' : ''}}">
+      <view class="joint-head"><text class="joint-code mono">J4</text><text class="joint-axis">X</text></view>
+      <view class="joint-name">腕部</view>
+      <view class="joint-value mono">{{pose.wrist}}°</view>
+    </view>
+  </view>
+
+  <view class="preset-row">
+    <view
+      wx:for="{{presets}}"
+      wx:key="key"
+      class="preset {{activePreset == item.key ? 'is-active' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="handlePreset"
+    >{{item.name}}</view>
+  </view>
+
+  <view class="telemetry panel">
+    <view class="telemetry-top">
+      <view>
+        <view class="telemetry-k mono">END EFFECTOR</view>
+        <view class="telemetry-title">正运动学读数</view>
+      </view>
+      <view class="telemetry-reach mono">{{reachLabel}}</view>
+    </view>
+
+    <view class="axis-row">
+      <view class="axis">
+        <text class="axis-k">X</text>
+        <text class="axis-v mono">{{kinematics.x}}</text>
+        <text class="axis-u">mm</text>
+      </view>
+      <view class="axis">
+        <text class="axis-k">Y</text>
+        <text class="axis-v mono">{{kinematics.y}}</text>
+        <text class="axis-u">mm</text>
+      </view>
+      <view class="axis">
+        <text class="axis-k">Z</text>
+        <text class="axis-v mono">{{kinematics.z}}</text>
+        <text class="axis-u">mm</text>
+      </view>
+    </view>
+
+    <view class="reach-track">
+      <view class="reach-fill" style="width: {{reachPercent}}%"></view>
+    </view>
+    <view class="reach-meta">
+      <text>REACH</text>
+      <text class="mono">{{reachPercent}}%</text>
+    </view>
+  </view>
+
+  <view class="robot-controls">
+    <view class="btn btn-primary" bindtap="handleGripper">{{gripper > 0.5 ? '闭合夹爪' : '张开夹爪'}}</view>
+    <view class="btn btn-ghost" bindtap="handleReset">复位姿态</view>
+  </view>
+
+  <stage-hint
+    text="拖拽关节调整 · 空白拖动视角 · 双指缩放"
+    action="复位视角"
+    bind:action="handleCameraReset"
+  ></stage-hint>
+</view>

@@ -1,0 +1,305 @@
+.humanoid-page {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 34rpx 32rpx calc(48rpx + env(safe-area-inset-bottom));
+  overflow: hidden;
+}
+
+.aura {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.aura-a {
+  top: -180rpx;
+  right: -220rpx;
+  width: 640rpx;
+  height: 640rpx;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.18), rgba(56, 189, 248, 0) 66%);
+}
+
+.aura-b {
+  top: 900rpx;
+  left: -240rpx;
+  width: 600rpx;
+  height: 600rpx;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.12), rgba(251, 146, 60, 0) 68%);
+}
+
+.page-head {
+  position: relative;
+  z-index: 2;
+}
+
+.live-pill {
+  display: flex;
+  align-items: center;
+  height: 52rpx;
+  padding: 0 20rpx;
+  border: 1rpx solid rgba(251, 146, 60, 0.45);
+  border-radius: 999rpx;
+  background: rgba(251, 146, 60, 0.08);
+  font-size: 19rpx;
+  color: #fdba74;
+}
+
+.live-dot {
+  width: 8rpx;
+  height: 8rpx;
+  margin-right: 10rpx;
+  border-radius: 50%;
+  background: #fb923c;
+  box-shadow: 0 0 12rpx #fb923c;
+  animation: liveBlink 1.8s ease-in-out infinite;
+}
+
+.stage-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22rpx;
+  padding: 0 4rpx;
+}
+
+.gl-stage {
+  position: relative;
+  z-index: 1;
+  height: 760rpx;
+  margin-top: 10rpx;
+  overflow: hidden;
+  border: 1rpx solid rgba(125, 211, 252, 0.16);
+  border-radius: 34rpx;
+  background: #05070f;
+  box-shadow: 0 40rpx 90rpx rgba(0, 0, 0, 0.5), inset 0 1rpx 0 rgba(255, 255, 255, 0.05);
+}
+
+.gl-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.chrome-badge {
+  display: flex;
+  align-items: center;
+  height: 38rpx;
+  padding: 0 14rpx;
+  border: 1rpx solid rgba(125, 211, 252, 0.22);
+  border-radius: 999rpx;
+  background: rgba(9, 16, 30, 0.72);
+  font-family: "SFMono-Regular", "Cascadia Code", Menlo, monospace;
+  font-size: 14rpx;
+  letter-spacing: 2rpx;
+  color: #9ee8ff;
+}
+
+.chrome-dot {
+  width: 7rpx;
+  height: 7rpx;
+  margin-right: 8rpx;
+  border-radius: 50%;
+  background: #5eead4;
+  box-shadow: 0 0 10rpx #5eead4;
+}
+
+.chrome-fps {
+  font-size: 14rpx;
+  letter-spacing: 1rpx;
+  color: #7d90ad;
+}
+
+.status-strip {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  margin-top: 12rpx;
+  padding: 14rpx 20rpx;
+  border: 1rpx solid rgba(125, 211, 252, 0.12);
+  border-radius: 14rpx;
+  background: rgba(9, 16, 30, 0.72);
+  font-family: "SFMono-Regular", "Cascadia Code", Menlo, monospace;
+  font-size: 16rpx;
+  letter-spacing: 1rpx;
+  color: #8fa3c0;
+}
+
+.status-strip.is-error {
+  border-color: rgba(251, 113, 133, 0.35);
+  color: #fda4af;
+}
+
+.status-spinner {
+  width: 22rpx;
+  height: 22rpx;
+  margin-right: 12rpx;
+  border: 2rpx solid rgba(94, 234, 212, 0.2);
+  border-top-color: #5eead4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.motion-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  margin-top: 18rpx;
+}
+
+.motion-chip {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 92rpx;
+  border: 1rpx solid rgba(125, 211, 252, 0.14);
+  border-radius: 18rpx;
+  background: rgba(9, 16, 30, 0.72);
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.motion-chip + .motion-chip {
+  margin-left: 10rpx;
+}
+
+.motion-chip.is-active {
+  border-color: var(--accent, #5eead4);
+  background: rgba(94, 234, 212, 0.08);
+}
+
+.motion-label {
+  font-size: 18rpx;
+  letter-spacing: 2rpx;
+  color: #7d90ad;
+}
+
+.motion-chip.is-active .motion-label {
+  color: var(--accent, #5eead4);
+}
+
+.motion-name {
+  margin-top: 4rpx;
+  font-size: 18rpx;
+  color: #5f7492;
+}
+
+.asset-panel {
+  position: relative;
+  z-index: 2;
+  margin-top: 16rpx;
+  padding: 24rpx 26rpx;
+}
+
+.asset-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.asset-k {
+  font-size: 14rpx;
+  letter-spacing: 3rpx;
+  color: #5f7492;
+}
+
+.asset-title {
+  margin-top: 4rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+
+.asset-size {
+  font-size: 24rpx;
+  color: #7ef3e3;
+}
+
+.stat-row {
+  display: flex;
+  margin-top: 20rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx solid rgba(125, 211, 252, 0.1);
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat + .stat {
+  border-left: 1rpx solid rgba(125, 211, 252, 0.1);
+}
+
+.stat-v {
+  font-size: 30rpx;
+  color: #e8f2ff;
+}
+
+.stat-k {
+  margin-top: 4rpx;
+  font-family: "SFMono-Regular", "Cascadia Code", Menlo, monospace;
+  font-size: 13rpx;
+  letter-spacing: 2rpx;
+  color: #5f7492;
+}
+
+.cam-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  margin-top: 16rpx;
+}
+
+.cam-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 74rpx;
+  border: 1rpx solid rgba(125, 211, 252, 0.16);
+  border-radius: 16rpx;
+  background: rgba(9, 16, 30, 0.72);
+  font-size: 21rpx;
+  color: #8fa3c0;
+}
+
+.cam-btn + .cam-btn {
+  margin-left: 14rpx;
+}
+
+.cam-btn.is-on {
+  border-color: rgba(94, 234, 212, 0.5);
+  color: #7ef3e3;
+}
+
+.cam-dot {
+  width: 8rpx;
+  height: 8rpx;
+  margin-right: 10rpx;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 10rpx currentColor;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes liveBlink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}

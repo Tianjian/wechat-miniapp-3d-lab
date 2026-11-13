@@ -1,0 +1,90 @@
+<view class="home">
+  <view class="aura aura-a"></view>
+  <view class="aura aura-b"></view>
+  <view class="aura aura-c"></view>
+
+  <view class="hero">
+    <view
+      class="hero-stage"
+      bindtouchstart="handleHeroStart"
+      catchtouchmove="handleHeroMove"
+      bindtouchend="handleHeroEnd"
+      bindtouchcancel="handleHeroEnd"
+    >
+      <view class="hero-halo"></view>
+      <view
+        class="hero-scene {{heroDragging ? 'is-dragging' : ''}}"
+        style="transform: rotateX({{heroX}}deg) rotateY({{heroY}}deg);"
+      >
+        <view class="orbit-ring ring-a"></view>
+        <view class="orbit-ring ring-b"></view>
+        <view class="orbit-ring ring-c"></view>
+
+        <view class="hero-cube">
+          <view class="mini-face mini-front"><text>3D</text></view>
+          <view class="mini-face mini-back"><text>Z</text></view>
+          <view class="mini-face mini-right"><text>Y</text></view>
+          <view class="mini-face mini-left"><text>X</text></view>
+          <view class="mini-face mini-top"></view>
+          <view class="mini-face mini-bottom"></view>
+        </view>
+
+        <view class="sat sat-a">perspective</view>
+        <view class="sat sat-b">preserve-3d</view>
+        <view class="sat sat-c">translateZ</view>
+      </view>
+      <view class="stage-tag">
+        <view class="stage-dot"></view>
+        <text>DRAG TO ORBIT</text>
+      </view>
+    </view>
+
+    <view class="hero-title">
+      <view>把界面</view>
+      <view class="grad">推进第三维</view>
+    </view>
+    <view class="hero-sub">
+      WXML / WXSS / WebGL 的 3D 交互实验场：透视、景深、惯性、陀螺仪，还有一副会走路的骨骼。
+    </view>
+    <view class="hero-chips">
+      <view class="chip">CSS 3D</view>
+      <view class="chip">WebGL</view>
+      <view class="chip">CC0 资产</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <view>
+        <view class="section-kicker">INTERACTION SET</view>
+        <view class="section-title">六个实验</view>
+      </view>
+      <view class="section-count mono">01 — 06</view>
+    </view>
+
+    <view class="demo-item" wx:for="{{demos}}" wx:key="key">
+      <demo-card
+        code="{{item.key}}"
+        order="{{item.order}}"
+        title="{{item.title}}"
+        desc="{{item.desc}}"
+        tag="{{item.tag}}"
+        accent="{{item.accent}}"
+        bind:open="handleOpenDemo"
+      ></demo-card>
+    </view>
+  </view>
+
+  <view class="stats panel">
+    <view class="stat" wx:for="{{stats}}" wx:key="label">
+      <view class="stat-value mono">{{item.value}}</view>
+      <view class="stat-label">{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-line"></view>
+    <view class="footer-title">3D LAB · CSS 3D + WEBGL</view>
+    <view class="footer-sub">WebView 渲染器 · 基础库 3.5.5 · 无 npm 安装</view>
+  </view>
+</view>

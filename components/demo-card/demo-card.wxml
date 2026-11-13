@@ -1,0 +1,23 @@
+<view
+  class="demo-card {{dragging ? 'is-dragging' : ''}}"
+  style="--accent: {{accent}}; transform: perspective(1000rpx) rotateX({{rx}}deg) rotateY({{ry}}deg);"
+  bindtouchstart="handleTouchStart"
+  bindtouchmove="handleTouchMove"
+  bindtouchend="handleTouchEnd"
+  bindtouchcancel="handleTouchEnd"
+  bindtap="handleTap"
+>
+  <view class="card-glow"></view>
+  <view class="card-grid"></view>
+  <view class="card-beam"></view>
+  <view class="card-order">{{order}}</view>
+
+  <view class="card-main">
+    <view class="card-top">
+      <view class="card-tag">{{tag}}</view>
+      <view class="card-arrow">↗</view>
+    </view>
+    <view class="card-title">{{title}}</view>
+    <view class="card-desc">{{desc}}</view>
+  </view>
+</view>

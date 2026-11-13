@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "旋转立方体",
+  "usingComponents": {
+    "stage-hint": "/components/stage-hint/stage-hint"
+  }
+}
