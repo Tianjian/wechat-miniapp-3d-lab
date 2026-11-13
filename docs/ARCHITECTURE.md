@@ -119,7 +119,7 @@ base64 string
 - 无构建步骤、无 npm 依赖；
 - `lib/` 中的 Three.js / GLTFLoader / GLB 是源码级 vendor；
 - `project.config.json` 的 `packOptions.ignore` 排除 `scripts/`、`tools/`、`docs/`、`.github/` 与文档；
-- 主包 1,419.9 KB，包含 49 个文件（校验脚本统计）。
+- 主包 1,419.8 KB，包含 49 个文件（校验脚本统计）。
 
 ## 6. 安全边界
 

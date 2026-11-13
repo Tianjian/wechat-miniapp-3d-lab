@@ -40,7 +40,7 @@ fs.writeFileSync(
 - 修改：包装为 CommonJS 的 `registerGLTFLoader(THREE)`，供 scoped THREE 使用
 - 许可：MIT
 - 文件：`lib/gltf-loader.js`
-- SHA-256：`544e0b44f4b1521e1cc1ab5befd64dfd9b0976b62d5e8a10aad15bb70e9c6c98`
+- SHA-256：`716b8ef2c23a80aeafe0c1530cf7f7bf6eac19e80cc88281667205c4cc085044`
 
 ## 许可全文
 
