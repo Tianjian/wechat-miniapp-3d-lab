@@ -87,7 +87,7 @@ node scripts/smoke.mjs
 | --- | --- |
 | 静态校验 | **22 通过 · 0 警告 · 0 失败** |
 | mock 冒烟 | **15 / 15** |
-| `preview` 构建 | **1.3 MB，无编译错误** |
+| `preview` 构建（本地真实 AppID） | **1.3 MB，无编译错误** |
 | 包体积 | **1419.8 KB / 2048 KB** |
 | 模拟器渲染 | 7 个页面正常，人形机器人 **60 FPS** |
 | CI | GitHub Actions `verify.yml` |
